@@ -9,9 +9,9 @@ class Router
     protected $routes = [ ];
     public Request $request;
 
-    public function __construct()
-    {
-        $this->request = new Request();
+    public function __construct(Request $request)
+    {   
+        $this->request = $request;
     }
 
     public function get($path, $callback)
@@ -21,6 +21,13 @@ class Router
 
     public function resolve()
     {
-         $this->request->getPath();
+        $path = $this->request->getPath();
+        echo "<pre>";
+        var_dump($path);
+        echo "</pre>";
+        $method = $this->request->getMethod();
+        $callback = $this->routes[$method][$path] ?? false;
+
+        echo call_user_func($callback);
     }
 }
