@@ -1,0 +1,16 @@
+{
+    "name": "aimad/07-mvc",
+    "description": "MVC",
+    "authors": [
+        {
+            "name": "aimad bachar",
+            "email": "aimadbacharpro@outlook.fr"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "require": {}
+}
