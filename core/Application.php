@@ -1,17 +1,16 @@
 <?php
 
-namespace App\Core;
+namespace App\core;
 
-use App\Core\Router;
+use App\core\Router;
 
-class Application 
+class Application
 {
     public Router $router;
     public Request $request;
 
-
     public function __construct()
-    {   
+    {
         $this->request = new Request();
         $this->router = new Router($this->request);
     }
