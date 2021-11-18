@@ -15,10 +15,11 @@ class Router
     }
 
     public function get($path, $callback)
-    {
+    {   
+        
         $this->routes['get'][$path] = $callback;
     }
-
+    
     public function post($path, $callback)
     {
         $this->routes['post'][$path] = $callback;
@@ -37,6 +38,7 @@ class Router
         $method = $this->request->getMethod();
         $callback = $this->routes[$method][$path] ?? false;
 
+        
         if (!$callback) {
             return "404 | Not Found";
         }
@@ -45,6 +47,15 @@ class Router
             return $this->renderView($callback);
         }
 
+<<<<<<< HEAD
         return call_user_func($callback);
+=======
+        if(is_string($callback)){
+            return $this->renderView($callback);
+            exit;
+        }
+
+        echo call_user_func($callback);
+>>>>>>> 2383d016eea0fbb079da368b88fe7522b6c54d42
     }
 }
