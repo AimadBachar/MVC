@@ -25,6 +25,11 @@ class Router
         $this->routes['post'][$path] = $callback;
     }
 
+    public function render($views)
+    {
+        return include "../views/$views.php";
+    }
+
     public function resolve()
     {
         $path = $this->request->getPath();
@@ -38,7 +43,7 @@ class Router
         }
 
         if(is_string($callback)){
-            include '../views/contact.php';
+            $this->render($callback);
             exit;
         }
 
