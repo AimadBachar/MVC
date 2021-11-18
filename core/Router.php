@@ -35,12 +35,15 @@ class Router
             echo "404 | Not Found";
             exit;
         }
-
-        if(is_string($callback))
-        {
-            include '../views/contact.phtml';
-            exit;
+        if (is_string($callback)) {
+            return $this->renderView($callback);
         }
-        echo call_user_func($callback);
+
+        return call_user_func($callback);
+    }
+
+    public function renderView($view)
+    {
+        include_once __DIR__ . "/../views/" . $view . ".phtml";
     }
 }
