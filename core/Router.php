@@ -16,6 +16,7 @@ class Router
 
     public function get($path, $callback)
     {
+        
         $this->routes['get'][$path] = $callback;
     }
 
@@ -35,6 +36,11 @@ class Router
             exit;
         }
 
+        if(is_string($callback))
+        {
+            include '../views/contact.phtml';
+            exit;
+        }
         echo call_user_func($callback);
     }
 }
