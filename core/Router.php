@@ -25,9 +25,9 @@ class Router
         $this->routes['post'][$path] = $callback;
     }
 
-    public function render($views)
+    public function renderView($views)
     {
-        return include "../views/$views.php";
+        include_once __DIR__ ."/../views/".$views.".php";
     }
 
     public function resolve()
@@ -43,7 +43,7 @@ class Router
         }
 
         if(is_string($callback)){
-            $this->render($callback);
+            return $this->renderView($callback);
             exit;
         }
 
