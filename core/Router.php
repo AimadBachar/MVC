@@ -87,7 +87,7 @@ class Router
     public function layoutContent()
     {
         ob_start();
-        include_once Application::$ROOT_DIR . "/views/layout.phtml";
+        include_once Application::$ROOT_DIR . "/views/layouts/main.phtml";
         return ob_get_clean();
     }
 
