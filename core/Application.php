@@ -3,6 +3,7 @@
 namespace App\Core;
 
 use App\Core\Router;
+use App\Core\Respond;
 
 class Application
 {

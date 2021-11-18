@@ -3,22 +3,26 @@
 namespace App\Core;
 
 use App\Core\Request;
+use App\Core\Respond;
 
 class Router
 {
     protected $routes = [];
     public Request $request;
+    public Respond $respond;
 
     /**
      * Router constructor.
      * @param Request $request
+     * @param Respond $respond
      * @return void
      */
-    public function __construct(Request $request)
+    public function __construct(Request $request, Respond $respond)
     {
         $this->request = $request;
+        $this->respond = $respond;
     }
-
+   
     /**
      * subscribe get request to the router
      * @param string $path
@@ -52,7 +56,10 @@ class Router
         $callback = $this->routes[$method][$path] ?? false;
 
         if (!$callback) {
-            return "404 | Not Found";
+
+            $this->respond->setStatusCode(404);
+            return $this->renderView("404");
+            
         }
 
         if (is_string($callback)) {
