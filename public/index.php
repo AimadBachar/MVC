@@ -1,16 +1,12 @@
 <?php
 
-require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__.'/../vendor/autoload.php';
 
-use App\core\Application;
-
-// var_dump($_SERVER['REQUEST_URI']);
+use App\Core\Application;
 
 $app = new Application();
 
-$app->router->get('/', function() {
-    return 'Hello world!';
-});
+$app->router->get('/', 'welcome');
 
 $app->router->get('/contact', 'contact');
 

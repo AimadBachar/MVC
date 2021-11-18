@@ -1,3 +1,4 @@
 <?php
 
-include "..views/contact/phtml";
+/* $template = '../views/contact';
+include "../views/layout.phtml"; */

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\core;
+namespace App\Core;
 
-use App\core\Request;
+use App\Core\Request;
 
 class Router
 {
@@ -24,6 +24,13 @@ class Router
         $this->routes['post'][$path] = $callback;
     }
 
+    public function renderView($views)
+    {
+        $template = '../views/'.$views;
+        include "../views/layout.phtml";
+        /* include_once __DIR__ ."/../controllers/". $views .".php"; */
+    }
+
     public function resolve()
     {
         $path = $this->request->getPath();
@@ -31,10 +38,13 @@ class Router
         $callback = $this->routes[$method][$path] ?? false;
 
         if (!$callback) {
-            echo "404 | Not Found";
-            exit;
+            return "404 | Not Found";
         }
 
-        echo call_user_func($callback);
+        if (is_string($callback)) {
+            return $this->renderView($callback);
+        }
+
+        return call_user_func($callback);
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\core;
+namespace App\Core;
 
 class Request
 {
@@ -17,7 +17,6 @@ class Request
 
     public function getMethod()
     {
-        // pour faire correspondre 'GET' et 'get' strtolower on pourait utiliser 'GET' mais cela permet d'éviter de confondre avec les superglobale et les const
         return strtolower($_SERVER['REQUEST_METHOD']) ?? 'get';
     }
 }
