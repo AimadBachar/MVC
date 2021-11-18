@@ -15,10 +15,11 @@ class Router
     }
 
     public function get($path, $callback)
-    {
+    {   
+        
         $this->routes['get'][$path] = $callback;
     }
-
+    
     public function post($path, $callback)
     {
         $this->routes['post'][$path] = $callback;
@@ -30,8 +31,14 @@ class Router
         $method = $this->request->getMethod();
         $callback = $this->routes[$method][$path] ?? false;
 
+        
         if (!$callback) {
             echo "404 | Not Found";
+            exit;
+        }
+
+        if(is_string($callback)){
+            include '../views/contact.php';
             exit;
         }
 
